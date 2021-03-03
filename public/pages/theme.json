@@ -1,0 +1,31 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "pages": [
+      {
+        "label": "Home",
+        "url": "/",
+        "redirect": "/themes"
+      },
+      {
+        "url": "/themes",
+        "rewrite": "/themes/guangda",
+        "children": [
+          {
+            "label": "光大证券-负面标签",
+            "url": "/themes/guangda",
+            "icon": "fa fa-list",
+            "schemaApi": "get:/pages/guangda.json"
+          },
+          {
+            "label": "东吴证券-负面标签",
+            "url": "/themes/dongwu",
+            "icon": "fa fa-list",
+            "schemaApi": "get:/pages/crud-new.json"
+          }
+        ]
+      }
+    ]
+  }
+}

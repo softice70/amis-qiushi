@@ -1,0 +1,20 @@
+{
+  "type": "app",
+  "data": {
+    "userId": 0,
+    "userName": "魏知君",
+    "themes": []
+  },
+  "brandName": "秋识情报中心",
+  "logo": "/logo.png",
+  "header": {
+    "type": "wrapper",
+    "inline": true,
+    "className": "w-full",
+    "body": {
+      "type": "service",
+      "schemaApi": "get:/pages/header.json?userId=${userId}"
+    }
+  },
+  "api": "/pages/theme.json"
+}
