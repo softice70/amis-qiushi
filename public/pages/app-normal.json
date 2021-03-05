@@ -16,5 +16,5 @@
       "schemaApi": "get:/pages/header.json?userId=${userId}"
     }
   },
-  "api": "/pages/theme.json"
+  "api": "/api/theme-list-n"
 }

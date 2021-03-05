@@ -1,0 +1,114 @@
+{
+  "type": "wrapper",
+  "body": [
+      {
+        "type": "each",
+        "name": "rows",
+        "items": {
+          "type": "wrapper",
+          "visibleOn": "this.opt_relativity.indexOf(data.relativity) != -1 && this.opt_source_type.indexOf(data.source_type) != -1 ",
+          "body": [
+            {
+              "type": "wrapper",
+              "body": [
+                {
+                  "type": "icon",
+                  "className": "fa fa-edit text-info"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "<%= data.title %>",
+                  "inline": true,
+                  "className": "font-semibold ml-2 text-md text-blue-500"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "相似：<%= data.redup_count %>",
+                  "inline": false,
+                  "className": "font-normal ml-2 pull-right border border-solid rounded bg-red-400 text-white pl-1 pr-1"
+                }
+              ],
+              "className": "p-0 m-0"
+            },
+            {
+              "type": "wrapper",
+              "body": [
+                {
+                  "type": "tpl",
+                  "tpl": "<%= data.summary %>",
+                  "inline": false,
+                  "className": "text-sm text-gray-500"
+                }
+              ],
+              "className": "ml-5 p-0 w-full"
+            },
+            {
+              "type": "wrapper",
+              "body": [
+                {
+                  "type": "tpl",
+                  "tpl": "<%= this.dict.relativity[data.relativity] %>",
+                  "inline": true,
+                  "visibleOn": "data.relativity == '0'",
+                  "className": "border border-solid rounded border-blue-400 bg-blue-400 text-white p-1 text-sm"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "<%= this.dict.relativity[data.relativity] %>",
+                  "inline": true,
+                  "visibleOn": "data.relativity == '1'",
+                  "className": "border border-solid rounded border-green-400 bg-green-400 text-white p-1 text-sm"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "<%= this.dict.relativity[data.relativity] %>",
+                  "inline": true,
+                  "visibleOn": "data.relativity == '-1'",
+                  "className": "border border-solid rounded border-red-400 bg-red-400 text-white p-1 text-sm"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "<%= this.dict.source_type[data.source_type] %>",
+                  "inline": true,
+                  "className": "border border-solid rounded bg-blue-400 text-white p-1 text-sm"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "来源：<%= data.media_name %>",
+                  "inline": true,
+                  "className": "border border-solid rounded border-yellow-500 text-yellow-500 p-1 text-sm"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "出处：<%= data.content_media_name %>",
+                  "inline": true,
+                  "className": "border border-solid rounded border-red-500 text-red-500 p-1 text-sm",
+                  "visibleOn": "data.content_media_name != ''"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "<%= data.release_date %>",
+                  "inline": true,
+                  "className": "border border-solid rounded border-green-500 text-green-500 p-1 text-sm ml-2"
+                }
+              ],
+              "className": "m-1 p-1"
+            },
+            {
+              "type": "wrapper",
+              "body": [
+                {
+                  "type": "tpl",
+                  "tpl": "标签：<%= data.tag %> | 特征词：<%= data.keyword %>",
+                  "inline": false,
+                  "className": "text-sm text-black"
+                }
+              ],
+              "className": "p-0"
+            }
+          ],
+          "className": "ml-1 mt-1 max-w-md pull-left border border-solid rounded border-gray-300 shadow"
+        }
+      }
+    ]
+}

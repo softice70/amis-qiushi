@@ -1,0 +1,235 @@
+{
+  "type": "page",
+  "initApi": "get:/api/article-list?id=${param.id}",
+  "body": [
+    {
+      "type": "wrapper",
+      "className": "border border-solid rounded border-gray-300 shadow-md",
+      "body": [
+        {
+          "type": "hbox",
+          "columns": [
+            {
+              "type": "wrapper",
+              "className": "relative",
+              "body": [
+                {
+                  "type": "icon",
+                  "className": "fa fa-newspaper-o text-lg text-info"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "光大证券-负面标签",
+                  "inline": true,
+                  "className": "text-lg font-normal ml-2"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "共",
+                  "inline": true,
+                  "className": "absolute text-xs font-normal ml-5 z-40 border border-solid rounded-xl border-red-500 bg-red-500 text-white pl-1 pr-1 mt-1"
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "900条",
+                  "inline": true,
+                  "className": "absolute text-xs font-normal ml-6 z-10 border border-solid rounded-xl border-gray-300 bg-gray-300 text-black pr-1 pl-5 mt-1"
+                }
+              ]
+            },
+            {
+              "type": "wrapper",
+              "body": [
+                {
+                  "type": "button",
+                  "label": " ",
+                  "actionType": "dialog",
+                  "dialog": {
+                    "title": "系统提示",
+                    "body": "你点了配置"
+                  },
+                  "className": "pull-right no-border text-info text-xl p-none",
+                  "icon": "fa fa-refresh",
+                  "size": "md"
+                },
+                {
+                  "type": "button",
+                  "label": " ",
+                  "actionType": "dialog",
+                  "dialog": {
+                    "title": "系统提示",
+                    "body": "你点了刷新"
+                  },
+                  "className": "pull-right no-border text-info text-xl p-none",
+                  "icon": "fa fa-cog",
+                  "size": "md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "wrapper",
+          "className": "border border-l-0 border-r-0 border-b-0 border-solid border-gray-300",
+          "body": [
+            {
+              "type": "form",
+              "title": "",
+              "submitText": "",
+              "target": "article-list",
+              "wrapWithPanel": false,
+              "visible": true,
+              "mode": "inline",
+              "initApi": "get:/api/get_options?id=${param.id}",
+              "controls": [
+                {
+                  "type": "group",
+                  "controls": [
+                    {
+                      "label": "正负面",
+                      "type": "select",
+                      "name": "opt_relativity",
+                      "multiple": true,
+                      "joinValues": false,
+                      "extractValue": true,
+                      "options": [
+                        {
+                          "label": "正面",
+                          "value": "1"
+                        },
+                        {
+                          "label": "负面",
+                          "value": "-1"
+                        },
+                        {
+                          "label": "中性",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "资源",
+                      "type": "select",
+                      "name": "opt_source_type",
+                      "multiple": true,
+                      "joinValues": false,
+                      "extractValue": true,
+                      "options": [
+                        {
+                          "label": "资讯",
+                          "value": "0"
+                        },
+                        {
+                          "label": "论坛",
+                          "value": "1"
+                        },
+                        {
+                          "label": "贴吧",
+                          "value": "3"
+                        },
+                        {
+                          "label": "微博",
+                          "value": "4"
+                        },
+                        {
+                          "label": "微信",
+                          "value": "11"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "datetime",
+                      "name": "opt_start_time",
+                      "placeholder": "请选择开始时间"
+                    },
+                    {
+                      "type": "datetime",
+                      "name": "opt_end_time",
+                      "maxDate": "now",
+                      "value": "now",
+                      "placeholder": "请选择结束时间"
+                    },
+                    {
+                      "type": "submit",
+                      "label": "筛选",
+                      "level": "primary",
+                      "icon": "fa fa-filter pull-left",
+                      "className": "text-info"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "form",
+              "title": "",
+              "submitText": "",
+              "wrapWithPanel": false,
+              "controls": [
+                {
+                  "name": "searchText",
+                  "type": "text",
+                  "placeholder": "请输入搜索关键词",
+                  "addOn": {
+                    "type": "button",
+                    "level": "info",
+                    "icon": "fa fa-search pull-left",
+                    "label": "搜索"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "title": "数据视图",
+          "body": [
+            {
+              "type": "service",
+              "data": {
+                "dict":{
+                  "relativity": {
+                    "0": "中",
+                    "-1": "负",
+                    "1": "正"
+                  },
+                  "source_type": {
+                    "0": "资讯",
+                    "1": "论坛",
+                    "2": "贴吧",
+                    "3": "博客",
+                    "4": "微博",
+                    "11": "微信"
+                  }
+                },
+                "opt_relativity": ["0", "-1", "1"],
+                "opt_source_type": ["0", "1", "2", "3", "4", "11"]
+              },
+              "name": "article-list",
+              "schemaApi": "get:/pages/show-article-list-n.json"
+            }
+          ],
+          "icon": "fa fa-list-alt"
+        },
+        {
+          "title": "无效数据",
+          "body": [
+            {
+              "type": "tpl",
+              "tpl": "内容2",
+              "inline": false
+            }
+          ],
+          "icon": "fa fa-trash-o"
+        }
+      ],
+      "tabsMode": "line"
+    }
+  ],
+  "className": "bg-white"
+}
