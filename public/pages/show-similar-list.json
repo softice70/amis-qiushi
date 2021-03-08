@@ -1,140 +1,13 @@
 {
   "type": "crud",
-  "name": "articleList",
-  "api": {
-    "url": "/api/article-list?id=${id}&dataType=${dataView}",
-    "method": "post",
-    "data": {
-      "dataType": "${dataView}",
-      "keyword": "${searchText}",
-      "relativity": "${optRelativity}",
-      "sourceType": "${optSourceType}",
-      "startTime": "${optStartTime}",
-      "endTime": "${optEndTime}",
-      "page": "${page}",
-      "perPage": "${perPage}"
-    }
-  },
+  "name": "similarList",
+  "api": "get:/api/similar-list?articleId=${url_crc}",
   "syncLocation": false,
   "mode": "cards",
-  "defaultParams": {
-    "perPage": 15
-  },
-  "perPageAvailable": [5, 10, 15, 20],
-  "placeholder": "没有主题数据",
-  "columnsCount": 2,
-  "filterDefaultVisible": true,
-  "filter": {
-    "initApi": "get:/api/get_options?id=${id}",
-    "className": "border border-solid rounded border-gray-300 shadow-md p-2 mb-2",
-    "wrapWithPanel": false,
-    "visible": true,
-    "mode": "inline",
-    "debug": false,
-    "controls": [
-      {
-        "type": "group",
-        "controls": [
-          {
-            "label": "正负面",
-            "type": "select",
-            "name": "optRelativity",
-            "multiple": true,
-            "joinValues": true,
-            "extractValue": false,
-            "options": [
-              {
-                "label": "正面",
-                "value": "1"
-              },
-              {
-                "label": "负面",
-                "value": "-1"
-              },
-              {
-                "label": "中性",
-                "value": "0"
-              }
-            ]
-          },
-          {
-            "label": "资源",
-            "type": "select",
-            "name": "optSourceType",
-            "multiple": true,
-            "joinValues": true,
-            "extractValue": false,
-            "options": [
-              {
-                "label": "资讯",
-                "value": "0"
-              },
-              {
-                "label": "论坛",
-                "value": "1"
-              },
-              {
-                "label": "贴吧",
-                "value": "3"
-              },
-              {
-                "label": "微博",
-                "value": "4"
-              },
-              {
-                "label": "微信",
-                "value": "11"
-              }
-            ]
-          },
-          {
-            "type": "datetime",
-            "name": "optStartTime",
-            "placeholder": "请选择开始时间"
-          },
-          {
-            "type": "datetime",
-            "name": "optEndTime",
-            "maxDate": "now",
-            "value": "now",
-            "placeholder": "请选择结束时间"
-          },
-          {
-            "type": "submit",
-            "label": "筛选",
-            "level": "primary",
-            "icon": "fa fa-filter pull-left",
-            "className": "text-info"
-          },
-          {
-            "name": "searchText",
-            "type": "text",
-            "placeholder": "请输入关键词",
-            "addOn": {
-              "type": "submit",
-              "level": "info",
-              "icon": "fa fa-search pull-left",
-              "label": "搜索"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "filterTogglable": true,
-  "headerToolbar": [
-    "filter-toggler",
-    {
-      "type": "tpl",
-      "tpl": "共 ${count} 条",
-      "inline": true,
-      "className": "text-xs font-normal border border-solid rounded-xl border-green-500 bg-green-500 text-white pl-1 pr-1 mt-1"
-    }
-  ],
-  "footerToolbar": [
-    "switch-per-page",
-    "pagination"
-  ],
+  "placeholder": "没有相似数据",
+  "columnsCount": 1,
+  "headerToolbar": [],
+  "footerToolbar": [],
   "card": {
     "className": "border border-solid rounded shadow",
     "bodyClassName": "padder ml-1 mt-1 p-1",
@@ -188,28 +61,6 @@
             "tpl": "<%= data.title %>",
             "inline": true,
             "className": "font-semibold ml-2 text-md text-blue-500"
-          },
-          {
-            "type": "button",
-            "label": "相似：<%= data.redup_count %>",
-            "visibleOn": "data.redup_count > 0",
-            "inline": false,
-            "size": "sm",
-            "className": "font-normal ml-2 mr-2 pull-right border border-solid rounded bg-red-400 text-white",
-            "actionType": "dialog",
-            "dialog": {
-              "title": "相似内容列表",
-              "showCloseButton": true,
-              "closeOnOutside": true,
-              "size": "md",
-              "actions": [],
-              "body": [
-                {
-                  "type": "service",
-                  "schemaApi": "get:/pages/show-similar-list.json"
-                }
-              ]
-            }
           }
         ],
         "className": "p-0 m-0"
