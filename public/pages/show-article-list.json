@@ -197,10 +197,11 @@
             "size": "sm",
             "className": "font-normal ml-2 mr-2 pull-right border border-solid rounded bg-red-400 text-white",
             "actionType": "dialog",
+            "bodyBaseClass": "modal-body",
             "dialog": {
               "title": "相似内容列表",
               "showCloseButton": true,
-              "closeOnOutside": true,
+              "closeOnEsc": true,
               "size": "md",
               "actions": [],
               "body": [

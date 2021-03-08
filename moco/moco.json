@@ -96,7 +96,7 @@
 		},
 		"response": {
 			"json": {
-				"showArticle": "blank",
+				"showArticle": "inDrawer",
 				"optRelativity": "0,-1,1",
 				"optSourceType": "0,1,2,3,4,11"
 			}
