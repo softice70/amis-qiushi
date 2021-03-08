@@ -208,7 +208,7 @@
                   }
                 },
                 "opt_relativity": ["0", "-1", "1"],
-                "opt_source_type": ["0", "1", "2", "3", "4", "11"]
+                "optSourceType": ["0", "1", "2", "3", "4", "11"]
               },
               "name": "article-list",
               "schemaApi": "get:/pages/show-article-list-n.json"

@@ -1,19 +1,34 @@
 {
   "type": "crud",
-  "api": "/api/article-list?id=${id}",
+  "name": "articleList",
+  "api": {
+    "url": "/api/article-list?id=${id}&dataType=${dataView}",
+    "method": "post",
+    "data": {
+      "dataType": "${dataView}",
+      "keyword": "${searchText}",
+      "relativity": "${optRelativity}",
+      "sourceType": "${optSourceType}",
+      "startTime": "${optStartTime}",
+      "endTime": "${optEndTime}",
+      "page": "${page}",
+      "perPage": "${perPage}"
+    }
+  },
   "syncLocation": false,
   "mode": "cards",
   "defaultParams": {
-    "perPage": 15
+    "perPage": 20
   },
-  "switchPerPage": false,
   "placeholder": "没有主题数据",
   "columnsCount": 2,
   "filter": {
+    "initApi": "get:/api/get_options?id=${id}",
     "className": "border border-solid rounded border-gray-300 shadow-md p-2 mb-2",
     "wrapWithPanel": false,
     "visible": true,
     "mode": "inline",
+    "debug": false,
     "controls": [
       {
         "type": "group",
@@ -21,10 +36,10 @@
           {
             "label": "正负面",
             "type": "select",
-            "name": "opt_relativity",
+            "name": "optRelativity",
             "multiple": true,
-            "joinValues": false,
-            "extractValue": true,
+            "joinValues": true,
+            "extractValue": false,
             "options": [
               {
                 "label": "正面",
@@ -43,10 +58,10 @@
           {
             "label": "资源",
             "type": "select",
-            "name": "opt_source_type",
+            "name": "optSourceType",
             "multiple": true,
-            "joinValues": false,
-            "extractValue": true,
+            "joinValues": true,
+            "extractValue": false,
             "options": [
               {
                 "label": "资讯",
@@ -72,22 +87,29 @@
           },
           {
             "type": "datetime",
-            "name": "opt_start_time",
+            "name": "optStartTime",
             "placeholder": "请选择开始时间"
           },
           {
             "type": "datetime",
-            "name": "opt_end_time",
+            "name": "optEndTime",
             "maxDate": "now",
             "value": "now",
             "placeholder": "请选择结束时间"
           },
           {
+            "type": "submit",
+            "label": "筛选",
+            "level": "primary",
+            "icon": "fa fa-filter pull-left",
+            "className": "text-info"
+          },
+          {
             "name": "searchText",
             "type": "text",
-            "placeholder": "请输入搜索关键词",
+            "placeholder": "请输入关键词",
             "addOn": {
-              "type": "button",
+              "type": "submit",
               "level": "info",
               "icon": "fa fa-search pull-left",
               "label": "搜索"
@@ -119,11 +141,48 @@
         "type": "container",
         "body": [
           {
-            "type": "icon",
-            "className": "fa fa-edit text-info"
+            "type": "button",
+            "label": " ",
+            "icon": "fa fa-edit",
+            "size": "sm",
+            "className": "no-border m-0 p-0 text-xs text-info"
+          },
+          {
+            "type": "link",
+            "visibleOn": "showArticle != 'inDrawer'",
+            "href": "${url | url_decode}",
+            "body": "<%= data.title %>",
+            "blank": true,
+            "inline": true,
+            "className": "font-semibold ml-2 text-md text-blue-500"
+          },
+          {
+            "type": "button",
+            "label": " ",
+            "visibleOn": "showArticle == 'inDrawer'",
+            "icon": "fa fa-eye",
+            "inline": false,
+            "size": "sm",
+            "className": "no-border m-0 p-0 text-xs text-info",
+            "actionType": "drawer",
+            "drawer": {
+              "title": "",
+              "position": "bottom",
+              "closeOnOutside": true,
+              "resizable": true,
+              "size": "xl",
+              "actions": [],
+              "body": [
+                {
+                  "type": "iframe",
+                  "src": "${url | url_decode}"
+                }
+              ]
+            }
           },
           {
             "type": "tpl",
+            "visibleOn": "showArticle == 'inDrawer'",
             "tpl": "<%= data.title %>",
             "inline": true,
             "className": "font-semibold ml-2 text-md text-blue-500"
@@ -131,6 +190,7 @@
           {
             "type": "tpl",
             "tpl": "相似：<%= data.redup_count %>",
+            "visibleOn": "data.redup_count > 0",
             "inline": false,
             "className": "font-normal ml-2 pull-right border border-solid rounded bg-red-400 text-white pl-1 pr-1"
           }
