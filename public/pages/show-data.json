@@ -1,0 +1,115 @@
+{
+  "type": "page",
+  "body": [
+    {
+      "type": "hbox",
+      "className": "border border-solid rounded border-gray-300 shadow-md",
+      "columns": [
+        {
+          "type": "wrapper",
+          "className": "relative",
+          "body": [
+            {
+              "type": "icon",
+              "className": "fa fa-newspaper-o text-lg text-info"
+            },
+            {
+              "type": "tpl",
+              "tpl": "光大证券-负面标签}",
+              "inline": true,
+              "className": "text-lg font-normal ml-2"
+            },
+            {
+              "type": "tpl",
+              "tpl": "共",
+              "inline": true,
+              "className": "absolute text-xs font-normal ml-5 z-40 border border-solid rounded-xl border-red-500 bg-red-500 text-white pl-1 pr-1 mt-1"
+            },
+            {
+              "type": "tpl",
+              "tpl": "900条",
+              "inline": true,
+              "className": "absolute text-xs font-normal ml-6 z-10 border border-solid rounded-xl border-gray-300 bg-gray-300 text-black pr-1 pl-5 mt-1"
+            }
+          ]
+        },
+        {
+          "type": "wrapper",
+          "body": [
+            {
+              "type": "button",
+              "label": " ",
+              "actionType": "dialog",
+              "dialog": {
+                "title": "系统提示",
+                "body": "你点了配置"
+              },
+              "className": "pull-right no-border text-info text-xl p-none",
+              "icon": "fa fa-refresh",
+              "size": "md"
+            },
+            {
+              "type": "button",
+              "label": " ",
+              "actionType": "dialog",
+              "dialog": {
+                "title": "系统提示",
+                "body": "你点了刷新"
+              },
+              "className": "pull-right no-border text-info text-xl p-none",
+              "icon": "fa fa-cog",
+              "size": "md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "title": "数据视图",
+          "body": [
+            {
+              "type": "service",
+              "data": {
+                "dict":{
+                  "relativity": {
+                    "0": "中",
+                    "-1": "负",
+                    "1": "正"
+                  },
+                  "source_type": {
+                    "0": "资讯",
+                    "1": "论坛",
+                    "2": "贴吧",
+                    "3": "博客",
+                    "4": "微博",
+                    "11": "微信"
+                  }
+                }
+              },
+              "name": "article-list",
+              "api": "get:/api/get_options?id=${id}",
+              "schemaApi": "get:/pages/show-article-list.json"
+            }
+          ],
+          "icon": "fa fa-list-alt"
+        },
+        {
+          "title": "无效数据",
+          "body": [
+            {
+              "type": "tpl",
+              "tpl": "内容2",
+              "inline": false
+            }
+          ],
+          "icon": "fa fa-trash-o"
+        }
+      ],
+      "tabsMode": "line"
+    }
+  ],
+  "className": "bg-white"
+}

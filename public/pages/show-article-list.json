@@ -1,0 +1,219 @@
+{
+  "type": "crud",
+  "api": "/api/article-list?id=${id}",
+  "syncLocation": false,
+  "mode": "cards",
+  "defaultParams": {
+    "perPage": 15
+  },
+  "switchPerPage": false,
+  "placeholder": "没有主题数据",
+  "columnsCount": 2,
+  "filter": {
+    "className": "border border-solid rounded border-gray-300 shadow-md p-2 mb-2",
+    "wrapWithPanel": false,
+    "visible": true,
+    "mode": "inline",
+    "controls": [
+      {
+        "type": "group",
+        "controls": [
+          {
+            "label": "正负面",
+            "type": "select",
+            "name": "opt_relativity",
+            "multiple": true,
+            "joinValues": false,
+            "extractValue": true,
+            "options": [
+              {
+                "label": "正面",
+                "value": "1"
+              },
+              {
+                "label": "负面",
+                "value": "-1"
+              },
+              {
+                "label": "中性",
+                "value": "0"
+              }
+            ]
+          },
+          {
+            "label": "资源",
+            "type": "select",
+            "name": "opt_source_type",
+            "multiple": true,
+            "joinValues": false,
+            "extractValue": true,
+            "options": [
+              {
+                "label": "资讯",
+                "value": "0"
+              },
+              {
+                "label": "论坛",
+                "value": "1"
+              },
+              {
+                "label": "贴吧",
+                "value": "3"
+              },
+              {
+                "label": "微博",
+                "value": "4"
+              },
+              {
+                "label": "微信",
+                "value": "11"
+              }
+            ]
+          },
+          {
+            "type": "datetime",
+            "name": "opt_start_time",
+            "placeholder": "请选择开始时间"
+          },
+          {
+            "type": "datetime",
+            "name": "opt_end_time",
+            "maxDate": "now",
+            "value": "now",
+            "placeholder": "请选择结束时间"
+          },
+          {
+            "name": "searchText",
+            "type": "text",
+            "placeholder": "请输入搜索关键词",
+            "addOn": {
+              "type": "button",
+              "level": "info",
+              "icon": "fa fa-search pull-left",
+              "label": "搜索"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "filterTogglable": true,
+  "headerToolbar": [
+    "filter-toggler",
+    {
+      "type": "tpl",
+      "tpl": "共 ${count} 条",
+      "inline": true,
+      "className": "text-xs font-normal border border-solid rounded-xl border-green-500 bg-green-500 text-white pl-1 pr-1 mt-1"
+    }
+  ],
+  "footerToolbar": [
+    "switch-per-page",
+    "pagination"
+  ],
+  "card": {
+    "className": "border border-solid rounded shadow",
+    "bodyClassName": "padder ml-1 mt-1 p-1",
+    "body": [
+      {
+        "type": "container",
+        "body": [
+          {
+            "type": "icon",
+            "className": "fa fa-edit text-info"
+          },
+          {
+            "type": "tpl",
+            "tpl": "<%= data.title %>",
+            "inline": true,
+            "className": "font-semibold ml-2 text-md text-blue-500"
+          },
+          {
+            "type": "tpl",
+            "tpl": "相似：<%= data.redup_count %>",
+            "inline": false,
+            "className": "font-normal ml-2 pull-right border border-solid rounded bg-red-400 text-white pl-1 pr-1"
+          }
+        ],
+        "className": "p-0 m-0"
+      },
+      {
+        "type": "container",
+        "body": [
+          {
+            "type": "tpl",
+            "tpl": "<%= data.summary %>",
+            "inline": false,
+            "className": "text-sm text-gray-500"
+          }
+        ],
+        "className": "ml-5 p-1"
+      },
+      {
+        "type": "container",
+        "className": "m-1 p-1",
+        "body": [
+          {
+            "type": "tpl",
+            "tpl": "<%= this.dict.relativity[data.relativity] %>",
+            "inline": true,
+            "visibleOn": "data.relativity == '0'",
+            "className": "border border-solid rounded border-blue-400 bg-blue-400 text-white p-1 text-sm"
+          },
+          {
+            "type": "tpl",
+            "tpl": "<%= this.dict.relativity[data.relativity] %>",
+            "inline": true,
+            "visibleOn": "data.relativity == '1'",
+            "className": "border border-solid rounded border-green-400 bg-green-400 text-white p-1 text-sm"
+          },
+          {
+            "type": "tpl",
+            "tpl": "<%= this.dict.relativity[data.relativity] %>",
+            "inline": true,
+            "visibleOn": "data.relativity == '-1'",
+            "className": "border border-solid rounded border-red-400 bg-red-400 text-white p-1 text-sm"
+          },
+          {
+            "type": "tpl",
+            "tpl": "<%= this.dict.source_type[data.source_type] %>",
+            "inline": true,
+            "className": "border border-solid rounded bg-blue-400 text-white p-1 text-sm"
+          },
+          {
+            "type": "tpl",
+            "tpl": "来源：<%= data.media_name %>",
+            "inline": true,
+            "className": "border border-solid rounded border-yellow-500 text-yellow-500 p-1 text-sm"
+          },
+          {
+            "type": "tpl",
+            "tpl": "出处：<%= data.content_media_name %>",
+            "inline": true,
+            "className": "border border-solid rounded border-red-500 text-red-500 p-1 text-sm",
+            "visibleOn": "data.content_media_name != ''"
+          },
+          {
+            "type": "tpl",
+            "tpl": "<%= data.release_date %>",
+            "inline": true,
+            "className": "border border-solid rounded border-green-500 text-green-500 p-1 text-sm ml-2"
+          }
+        ]
+      },
+      {
+        "type": "container",
+        "className": "p-0 ml-1",
+        "body": [
+          {
+            "type": "tpl",
+            "tpl": "标签：<%= data.tag %> | 特征词：<%= data.keyword %>",
+            "inline": false,
+            "className": "text-sm text-black"
+          }
+        ]
+      }
+    ],
+    "actions": []
+  }
+}

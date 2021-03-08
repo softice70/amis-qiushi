@@ -1,6 +1,6 @@
 {
   "type": "page",
-  "initApi": "get:/api/article-list?id=${param.id}",
+  "initApi": "get:/api/article-list?id=${params.id}",
   "body": [
     {
       "type": "wrapper",
@@ -80,7 +80,7 @@
               "wrapWithPanel": false,
               "visible": true,
               "mode": "inline",
-              "initApi": "get:/api/get_options?id=${param.id}",
+              "initApi": "get:/api/get_options?id=${params.id}",
               "controls": [
                 {
                   "type": "group",

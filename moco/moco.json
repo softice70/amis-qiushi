@@ -32,23 +32,21 @@
 					{
 						"label": "Home",
 						"url": "/",
-						"redirect": "/themes"
+						"redirect": "/themes?id=1"
 					},
 					{
-						"url": "/themes",
-						"rewrite": "/themes/0",
 						"children": [
 							{
 								"label": "光大证券-负面标签",
-								"url": "/themes/0",
+								"url": "/themes?id=1",
 								"icon": "fa fa-list",
-								"schemaApi": "get:/pages/show-data.json?id=1"
+								"schemaApi": "get:/pages/show-data.json"
 							},
 							{
 								"label": "东吴证券-负面标签",
-								"url": "/themes/1",
+								"url": "/themes?id=2",
 								"icon": "fa fa-list",
-								"schemaApi": "get:/pages/show-data.json?id=2"
+								"schemaApi": "get:/pages/show-data.json"
 							}
 						]
 					}

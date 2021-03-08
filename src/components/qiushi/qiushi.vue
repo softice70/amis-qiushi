@@ -25,7 +25,8 @@ export default {
     methods: {
         getAppFrame(){
             let _this = this;
-            this.$ajax.get('/pages/app-normal.json').then(data => {
+//            this.$ajax.get('/pages/app-normal.json').then(data => {
+            this.$ajax.get('/pages/app.json').then(data => {
                 _this.schema = data.data;
                 _this.schema.data.userId = _this.userId;
                 _this.schema.data.userName = _this.userName;
