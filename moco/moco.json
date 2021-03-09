@@ -105,12 +105,39 @@
 	{
 		"request": {
 			"method": "get",
+			"uri": "/getThemeCfg"
+		},
+		"response": {
+			"json": {
+				"showFields": "time,mediaName,contentMediaName,sourceType,relativity,summary",
+				"timeFieldName": "release_date",
+				"sortType": "asc",
+				"DeduplicatedBy": "content",
+				"showLink": "inDrawer"
+			}
+		}
+	},
+	{
+		"request": {
+			"method": "post",
+			"uri": "/saveThemeCfg"
+		},
+		"response": {
+			"json": {
+				"status": 0,
+				"msg": "主题配置已保存"
+			}
+		}
+	},
+	{
+		"request": {
+			"method": "get",
 			"uri": "/setInvalidFlag"
 		},
 		"response": {
 			"json": {
 				"status": 0,
-				"msg": "该数据已成功标记为无效数据"
+				"msg": "该条数据已成功标记为无效数据"
 			}
 		}
 	},

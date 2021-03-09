@@ -29,8 +29,133 @@
               "label": " ",
               "actionType": "dialog",
               "dialog": {
-                "title": "系统提示",
-                "body": "你点了配置"
+                "title": "主题配置",
+                "actions": [
+                  {
+                    "label": "保存",
+                    "actionType": "submit",
+                    "primary": true,
+                    "type": "button"
+                  }
+                ],
+                "body": {
+                  "type": "form",
+                  "initApi": "get:/api/getThemeCfg?id=${id}",
+                  "api": "post:/api/saveThemeCfg?id=${id}",
+                  "controls": [
+                    {
+                      "name": "showFields",
+                      "type": "checkboxes",
+                      "label": "展示字段",
+                      "joinValues": true,
+                      "columnsCount": 3,
+                      "options": [
+                        {
+                          "label": "时间",
+                          "value": "time"
+                        },
+                        {
+                          "label": "来源",
+                          "value": "mediaName"
+                        },
+                        {
+                          "label": "出处",
+                          "value": "contentMediaName"
+                        },
+                        {
+                          "label": "资源类型",
+                          "value": "sourceType"
+                        },
+                        {
+                          "label": "正负情感",
+                          "value": "relativity"
+                        },
+                        {
+                          "label": "摘要",
+                          "value": "summary"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "group",
+                      "controls": [
+                        {
+                          "label": "发布时间",
+                          "type": "select",
+                          "name": "timeFieldName",
+                          "multiple": false,
+                          "options": [
+                            {
+                              "label": "发布时间",
+                              "value": "release_date"
+                            },
+                            {
+                              "label": "采集时间",
+                              "value": "download_date"
+                            },
+                            {
+                              "label": "入库时间",
+                              "value": "add_time"
+                            }
+                          ]
+                        },
+                        {
+                          "label": "时间排序",
+                          "type": "select",
+                          "name": "sortType",
+                          "multiple": false,
+                          "options": [
+                            {
+                              "label": "升序",
+                              "value": "asc"
+                            },
+                            {
+                              "label": "降序",
+                              "value": "desc"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "group",
+                      "controls": [
+                        {
+                          "label": "消重算法",
+                          "type": "select",
+                          "name": "DeduplicatedBy",
+                          "multiple": false,
+                          "options": [
+                            {
+                              "label": "内容相似消重",
+                              "value": "content"
+                            },
+                            {
+                              "label": "标题相似消重",
+                              "value": "title"
+                            }
+                          ]
+                        },
+                        {
+                          "label": "预览方式",
+                          "type": "select",
+                          "name": "showLink",
+                          "multiple": false,
+                          "options": [
+                            {
+                              "label": "页面弹出层",
+                              "value": "inDrawer"
+                            },
+                            {
+                              "label": "新标签页",
+                              "value": "inBlank"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
               },
               "className": "pull-right no-border text-info text-xl p-none",
               "icon": "fa fa-cog",
