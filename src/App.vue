@@ -1,15 +1,23 @@
 <template>
   <div id="app" class="app-wrapper">
     <Qiushi />
+    <Toast key="toast" position="top-right" theme="default"/>
+    <Alert key="alert" theme="default"/>
   </div>
 </template>
 
 <script>
 import Qiushi from './components/qiushi/qiushi.vue'
+import { ReactInVue } from 'vuera'
+import {ToastComponent, AlertComponent} from 'amis';
 
 export default {
   name: 'App',
-  components: {Qiushi},
+  components: {
+    Qiushi,
+    Toast: ReactInVue(ToastComponent),
+    Alert: ReactInVue(AlertComponent)
+  },
 }
 </script>
 

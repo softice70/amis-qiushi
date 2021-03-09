@@ -128,7 +128,16 @@
       "type": "tpl",
       "tpl": "共 ${count} 条",
       "inline": true,
-      "className": "text-xs font-normal border border-solid rounded-xl border-green-500 bg-green-500 text-white pl-1 pr-1 mt-1"
+      "className": "pull-right text-xs font-normal border border-solid rounded-xl border-green-500 bg-green-500 text-white pl-1 pr-1 mt-1 ml-4"
+    },
+    {
+      "type": "button",
+      "label": " ",
+      "icon": "fa fa-refresh",
+      "size": "md",
+      "className": "pull-right no-border text-info text-xl p-none",
+      "actionType": "ajax",
+      "api": "/api/article-list?id=${id}&dataType=${dataView}"
     }
   ],
   "footerToolbar": [
@@ -147,7 +156,11 @@
             "label": " ",
             "icon": "fa fa-edit",
             "size": "sm",
-            "className": "no-border m-0 p-0 text-xs text-info"
+            "className": "no-border m-0 p-0 text-xs text-info",
+            "confirmText": "确认要将该数据标为无效数据吗？标记后，与其相似的${redup_count}条数据也会一同标为无效数据",
+            "actionType": "ajax",
+            "api": "get:/api/setInvalidFlag?articleId=${url_crc}",
+            "reload": "articleList"
           },
           {
             "type": "link",
@@ -184,6 +197,7 @@
           },
           {
             "type": "tpl",
+            "name": "articleTitle",
             "visibleOn": "showArticle == 'inDrawer'",
             "tpl": "<%= data.title %>",
             "inline": true,
@@ -197,7 +211,6 @@
             "size": "sm",
             "className": "font-normal ml-2 mr-2 pull-right border border-solid rounded bg-red-400 text-white",
             "actionType": "dialog",
-            "bodyBaseClass": "modal-body",
             "dialog": {
               "title": "相似内容列表",
               "showCloseButton": true,

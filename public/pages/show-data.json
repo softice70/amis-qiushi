@@ -30,18 +30,6 @@
               "actionType": "dialog",
               "dialog": {
                 "title": "系统提示",
-                "body": "你点了刷新"
-              },
-              "className": "pull-right no-border text-info text-xl p-none",
-              "icon": "fa fa-refresh",
-              "size": "md"
-            },
-            {
-              "type": "button",
-              "label": " ",
-              "actionType": "dialog",
-              "dialog": {
-                "title": "系统提示",
                 "body": "你点了配置"
               },
               "className": "pull-right no-border text-info text-xl p-none",

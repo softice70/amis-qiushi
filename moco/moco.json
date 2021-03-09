@@ -104,6 +104,18 @@
 	},
 	{
 		"request": {
+			"method": "get",
+			"uri": "/setInvalidFlag"
+		},
+		"response": {
+			"json": {
+				"status": 0,
+				"msg": "该数据已成功标记为无效数据"
+			}
+		}
+	},
+	{
+		"request": {
 			"method": "post",
 			"uri": "/article-list",
 			"queries": {
@@ -804,29 +816,33 @@
 		},
 		"response": {
 			"json": {
-				"count": 1,
-				"rows": [
-					{
-						"summary": "...流压力陡然增大。房企即将掀起发债潮，<font color='orange'>东吴</font><font color='orange'>证券</font>预计，3月地产债的新发行规模将超过7...",
-						"url_crc": "1563306301360338893",
-						"source_type": "4",
-						"title": "【楼市观察|地产债净融资额连续七个月为负 偿债高峰下房企压力几何？】自2020年8月“三条红线”新政颁布以来，地产债的净融资额已连续七个月为负数。房企面临偿债高峰，现金流压力陡然增大。房企即将掀起发债潮，东吴证券预计，3月地产债的新发行规模将超过700亿元 楼市观察|地产债净融资额连续七个月为负 偿债高峰下房企压力几何？ ​",
-						"url": "http://weibo.com/1678221494/K4uIvFK0I",
-						"sim_id": "1614757772225",
-						"relativity": "0",
-						"release_date": "2021-03-03 17:23:00",
-						"invalid": "0",
-						"title_crc": "1963113543580637818",
-						"tag": "和讯上市类公司模版/未知;",
-						"media_name": "新浪微博",
-						"download_date": "2021-03-03 17:23:59",
-						"keyword": "东吴 证券",
-						"add_time": "2021-03-03 17:24:02",
-						"content_media_name": "",
-						"id": "fOpr93cBblGAzBYXyEC5",
-						"redup_count": 2
-					}
-				]
+				"status": 0,
+				"msg": "该数据已成功标记为无效数据",
+				"data": {
+					"count": 1,
+					"rows": [
+						{
+							"summary": "...流压力陡然增大。房企即将掀起发债潮，<font color='orange'>东吴</font><font color='orange'>证券</font>预计，3月地产债的新发行规模将超过7...",
+							"url_crc": "1563306301360338893",
+							"source_type": "4",
+							"title": "【楼市观察|地产债净融资额连续七个月为负 偿债高峰下房企压力几何？】自2020年8月“三条红线”新政颁布以来，地产债的净融资额已连续七个月为负数。房企面临偿债高峰，现金流压力陡然增大。房企即将掀起发债潮，东吴证券预计，3月地产债的新发行规模将超过700亿元 楼市观察|地产债净融资额连续七个月为负 偿债高峰下房企压力几何？ ​",
+							"url": "http://weibo.com/1678221494/K4uIvFK0I",
+							"sim_id": "1614757772225",
+							"relativity": "0",
+							"release_date": "2021-03-03 17:23:00",
+							"invalid": "0",
+							"title_crc": "1963113543580637818",
+							"tag": "和讯上市类公司模版/未知;",
+							"media_name": "新浪微博",
+							"download_date": "2021-03-03 17:23:59",
+							"keyword": "东吴 证券",
+							"add_time": "2021-03-03 17:24:02",
+							"content_media_name": "",
+							"id": "fOpr93cBblGAzBYXyEC5",
+							"redup_count": 2
+						}
+					]
+				}
 			}
 		}
 	}
