@@ -32,6 +32,12 @@
                 "title": "主题配置",
                 "actions": [
                   {
+                    "label": "取消",
+                    "actionType": "cancel",
+                    "type": "button",
+                    "level": "default"
+                  },
+                  {
                     "label": "保存",
                     "actionType": "submit",
                     "primary": true,
