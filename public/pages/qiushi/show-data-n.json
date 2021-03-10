@@ -1,6 +1,6 @@
 {
   "type": "page",
-  "initApi": "get:/api/article-list?id=${params.id}",
+  "initApi": "get:/api/qiushi/article-list?id=${params.id}",
   "body": [
     {
       "type": "wrapper",
@@ -80,7 +80,7 @@
               "wrapWithPanel": false,
               "visible": true,
               "mode": "inline",
-              "initApi": "get:/api/get_options?id=${params.id}",
+              "initApi": "get:/api/qiushi/get_options?id=${params.id}",
               "controls": [
                 {
                   "type": "group",
@@ -211,7 +211,7 @@
                 "optSourceType": ["0", "1", "2", "3", "4", "11"]
               },
               "name": "article-list",
-              "schemaApi": "get:/pages/show-article-list-n.json"
+              "schemaApi": "get:/pages/qiushi/show-article-list-n.json"
             }
           ],
           "icon": "fa fa-list-alt"

@@ -1,7 +1,7 @@
 {
   "type": "crud",
   "name": "similarList",
-  "api": "get:/api/similar-list?articleId=${url_crc}",
+  "api": "get:/api/qiushi/similar-list?articleId=${url_crc}",
   "syncLocation": false,
   "mode": "cards",
   "placeholder": "没有相似数据",

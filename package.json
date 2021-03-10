@@ -15,7 +15,8 @@
     "axios": "^0.19.2",
     "copy-to-clipboard": "3.0.8",
     "qs": "6.5.1",
-    "bootstrap": "^3.4.1"
+    "bootstrap": "^3.4.1",
+    "vue-cookies": "^1.7.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

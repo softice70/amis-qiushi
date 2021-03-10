@@ -1,5 +1,6 @@
 {
   "type": "page",
+  "initApi": "get:/api/qiushi/themeInfo?id=${id}",
   "body": [
     {
       "type": "hbox",
@@ -15,7 +16,7 @@
             },
             {
               "type": "tpl",
-              "tpl": "光大证券-负面标签",
+              "tpl": "${themeName}",
               "inline": true,
               "className": "text-lg font-normal ml-2"
             }
@@ -46,8 +47,8 @@
                 ],
                 "body": {
                   "type": "form",
-                  "initApi": "get:/api/getThemeCfg?id=${id}",
-                  "api": "post:/api/saveThemeCfg?id=${id}",
+                  "initApi": "get:/api/qiushi/getThemeCfg?id=${id}",
+                  "api": "post:/api/qiushi/saveThemeCfg?id=${id}",
                   "controls": [
                     {
                       "name": "showFields",
@@ -197,7 +198,7 @@
                   }
                 }
               },
-              "schemaApi": "get:/pages/show-article-list.json"
+              "schemaApi": "get:/pages/qiushi/show-article-list.json"
             }
           ],
           "icon": "fa fa-list-alt"
@@ -225,7 +226,7 @@
                   }
                 }
               },
-              "schemaApi": "get:/pages/show-article-list.json"
+              "schemaApi": "get:/pages/qiushi/show-article-list.json"
             }
           ],
           "icon": "fa fa-trash-o"

@@ -13,8 +13,8 @@
     "className": "w-full",
     "body": {
       "type": "service",
-      "schemaApi": "get:/pages/header.json"
+      "schemaApi": "get:/pages/qiushi/header.json"
     }
   },
-  "api": "/api/theme-list"
+  "api": "/api/qiushi/theme-list"
 }

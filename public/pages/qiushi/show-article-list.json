@@ -2,7 +2,7 @@
   "type": "crud",
   "name": "articleList",
   "api": {
-    "url": "/api/article-list?id=${id}&dataType=${dataView}",
+    "url": "/api/qiushi/article-list?id=${id}&dataType=${dataView}",
     "method": "post",
     "data": {
       "dataType": "${dataView}",
@@ -23,9 +23,9 @@
   "perPageAvailable": [5, 10, 15, 20],
   "placeholder": "没有主题数据",
   "columnsCount": 2,
-  "filterDefaultVisible": true,
+  "filterDefaultVisible": false,
   "filter": {
-    "initApi": "get:/api/get_options?id=${id}",
+    "initApi": "get:/api/qiushi/get_options?id=${id}",
     "className": "border border-solid rounded border-gray-300 shadow-md p-2 mb-2",
     "wrapWithPanel": false,
     "visible": true,
@@ -137,7 +137,7 @@
       "size": "md",
       "className": "pull-right no-border text-info text-xl p-none",
       "actionType": "ajax",
-      "api": "/api/article-list?id=${id}&dataType=${dataView}"
+      "api": "/api/qiushi/article-list?id=${id}&dataType=${dataView}"
     }
   ],
   "footerToolbar": [
@@ -159,7 +159,7 @@
             "className": "no-border m-0 p-0 text-xs text-info",
             "confirmText": "确认要将该数据标为无效数据吗？标记后，与其相似的${redup_count}条数据也会一同标为无效数据",
             "actionType": "ajax",
-            "api": "get:/api/setInvalidFlag?articleId=${url_crc}",
+            "api": "get:/api/qiushi/setInvalidFlag?articleId=${url_crc}",
             "reload": "articleList"
           },
           {
@@ -220,7 +220,7 @@
               "body": [
                 {
                   "type": "service",
-                  "schemaApi": "get:/pages/show-similar-list.json"
+                  "schemaApi": "get:/pages/qiushi/show-similar-list.json"
                 }
               ]
             }
