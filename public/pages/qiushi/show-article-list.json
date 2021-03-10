@@ -125,19 +125,25 @@
   "headerToolbar": [
     "filter-toggler",
     {
-      "type": "tpl",
-      "tpl": "共 ${count} 条",
-      "inline": true,
-      "className": "pull-right text-xs font-normal border border-solid rounded-xl border-green-500 bg-green-500 text-white pl-1 pr-1 mt-1 ml-4"
-    },
-    {
-      "type": "button",
-      "label": " ",
-      "icon": "fa fa-refresh",
-      "size": "md",
-      "className": "pull-right no-border text-info text-xl p-none",
-      "actionType": "ajax",
-      "api": "/api/qiushi/article-list?id=${id}&dataType=${dataView}"
+      "type": "wrapper",
+      "className": "pull-right",
+      "body": [
+        {
+          "type": "tpl",
+          "tpl": "共 ${count} 条",
+          "inline": true,
+          "className": "rounded-xl bg-green-500 text-white pr-2 pl-2 pt-1 pb-1 mt-1 ml-1"
+        },
+        {
+          "type": "button",
+          "label": " ",
+          "icon": "fa fa-refresh",
+          "size": "md",
+          "className": "no-border text-info text-xl p-none",
+          "actionType": "ajax",
+          "api": "/api/qiushi/article-list?id=${id}&dataType=${dataView}"
+        }
+      ]
     }
   ],
   "footerToolbar": [
