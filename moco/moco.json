@@ -2,17 +2,58 @@
 	{
 		"request": {
 			"method": "get",
-			"uri": "/appData",
+			"uri": "/appCfg",
 			"queries": {
-				"appId": "qiushi",
-				"userId": "1"
+				"appId": "qiushi"
 			}
 		},
 		"response": {
 			"json": {
-				"userId": 1,
-				"userName": "田铿君",
-				"appUrl": "/pages/qiushi/app.json"
+				"frameType": "MPA",
+				"routes": [
+					{
+						"pathname": "/qiushi",
+						"redirect": "/qiushi/themes?id=1"
+					},
+					{
+						"pathname": "/qiushi/themes",
+						"schemaApi": "/pages/qiushi/show-data.json"
+					},
+					{
+						"pathname": "/qiushi/login",
+						"schemaApi": "/pages/qiushi/login.json"
+					}
+				],
+				"appSchemaUrl": "/pages/qiushi/app.json"
+			}
+		}
+	},
+	{
+		"request": {
+			"method": "post",
+			"uri": "/qiushi/login",
+			"json": {
+				"username": "admin",
+				"password": "123456"
+			}
+		},
+		"response": {
+			"cookies" :{
+				"appId" : {
+					"value" : "qiushi",
+					"path" : "/qiushi"
+				},
+				"userId" : {
+					"value" : "1",
+					"path" : "/qiushi"
+				},
+				"userName" : {
+					"value" : "XXX",
+					"path" : "/qiushi"
+				}
+			},
+			"json": {
+				"redirect": "qiushi"
 			}
 		}
 	},
@@ -63,6 +104,11 @@
 					{
 						"label": "Home",
 						"url": "/qiushi",
+						"redirect": "/qiushi/themes?id=1"
+					},
+					{
+						"label": "login",
+						"url": "/qiushi/login",
 						"redirect": "/qiushi/themes?id=1"
 					},
 					{

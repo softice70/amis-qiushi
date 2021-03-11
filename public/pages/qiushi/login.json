@@ -1,0 +1,38 @@
+{
+  "type": "page",
+  "body": {
+    "type": "form",
+    "api": "post:/api/qiushi/login",
+    "controls": [
+      {
+        "type": "text",
+        "name": "username",
+        "placeholder": "请输入用户名",
+        "label": "用户名"
+      },
+      {
+        "type": "password",
+        "name": "password",
+        "label": "密码",
+        "placeholder": "请输入密码"
+      },
+      {
+        "type": "checkbox",
+        "name": "rememberMe",
+        "option": "记住登录"
+      }
+    ],
+    "actions": [
+      {
+        "type": "reset",
+        "label": "重置"
+      },
+      {
+        "type": "submit",
+        "label": "提交",
+        "level": "primary",
+        "redirect": "${redirect | url_decode}"
+      }
+    ]
+  }
+}

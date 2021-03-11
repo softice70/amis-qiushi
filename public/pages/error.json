@@ -1,0 +1,8 @@
+{
+  "type": "page",
+  "data": {
+    "errorMsg": "抱歉，未能找到这个网址，请联系管理员！"
+  },
+  "title": "应用配置错误",
+  "body": "${errorMsg}"
+}
