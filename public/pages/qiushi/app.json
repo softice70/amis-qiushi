@@ -6,7 +6,7 @@
     "themes": []
   },
   "brandName": "秋识情报中心",
-  "logo": "/logo.png",
+  "logo": "/img/logo.png",
   "header": {
     "type": "wrapper",
     "inline": true,

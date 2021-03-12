@@ -9,6 +9,7 @@
 		},
 		"response": {
 			"json": {
+				"appId": "qiushi",
 				"frameType": "MPA",
 				"routes": [
 					{
@@ -24,17 +25,51 @@
 						"schemaApi": "/pages/qiushi/login.json"
 					}
 				],
-				"appSchemaUrl": "/pages/qiushi/app.json"
+				"appSchemaUrl": "/pages/qiushi/app.json",
+				"brandName": "秋识情报中心",
+				"slogan": "秋来果丰，始于卓识"
 			}
 		}
 	},
 	{
 		"request": {
 			"method": "post",
-			"uri": "/qiushi/login",
+			"uri": "/login",
 			"json": {
+				"appId": "qiushi",
 				"username": "admin",
 				"password": "123456"
+			}
+		},
+		"response": {
+			"cookies" :{
+				"appId" : {
+					"value" : "qiushi",
+					"path" : "/qiushi"
+				},
+				"userId" : {
+					"value" : "1",
+					"path" : "/qiushi"
+				},
+				"userName" : {
+					"value" : "XXX",
+					"path" : "/qiushi"
+				}
+			},
+			"json": {
+				"redirect": "qiushi"
+			}
+		}
+	},
+	{
+		"request": {
+			"method": "post",
+			"uri": "/smslogin",
+			"json": {
+				"appId": "qiushi",
+				"phone": "10010",
+				"validateCode": "abcd",
+				"smsCode": "123456"
 			}
 		},
 		"response": {

@@ -1,5 +1,5 @@
 <template>
-    <div class="box" ref="renderBox"></div>
+    <div class="app-wrapper" ref="renderBox"></div>
 </template>
 
 <script>

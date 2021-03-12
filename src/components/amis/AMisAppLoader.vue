@@ -1,6 +1,6 @@
 <!--
 应用配置项说明：
-1.应用配置项必须设置 frameType 及与其相关的其他配置项
+1.应用配置项必须设置 frameType 及与其相关的其他配置项，同时还应该配置brandName、logoSrc、slogan等
 2.框架类型：frameType
   有两种框架类型：SPA和MPA
 3.MPA配置：
@@ -22,6 +22,7 @@
 
 <script>
 import AMisRenderer from "@/components/amis/AMisRenderer.vue";
+//import {toast} from 'amis';
 export default {
     name: "AMisAppLoader",
     components: {
@@ -37,10 +38,11 @@ export default {
         };
     },
     mounted(){
-        this.appId = this.$cookies.get('appId');
+        let appIdLogined = this.$cookies.get('appId');
+        this.appId = this.getAppidFromPathname();
         this.userId = this.$cookies.get('userId');
         this.userName = this.$cookies.get('userName');
-        if(this.appId && this.userId){
+        if(this.appId && this.userId && appIdLogined == this.appId){
             this.getAppFrame();
         }else{
             this.login();
@@ -52,7 +54,7 @@ export default {
             let errorMsg = undefined;
             this.$ajax.get('/api/appCfg?appId='+this.appId).then(appCfg => {
                 let schemaApi = undefined;
-                if(appCfg.data.frameType == undefined || appCfg.data.frameType == null){
+                if(appCfg.data == undefined || appCfg.data.frameType == undefined || appCfg.data.frameType == null){
                     schemaApi = '/pages/error.json';
                     errorMsg = "没有配置框架类型";
                 }else if(appCfg.data.frameType == 'MPA'){
@@ -82,30 +84,39 @@ export default {
         },
         login(){
             let _this = this;
-            let appIdEndPos = document.location.pathname.indexOf('/', 1);
-            let appId = ((appIdEndPos > 0)? document.location.pathname.substring(1, appIdEndPos): document.location.pathname.substr(1, document.location.pathname.length - 1));
             let errorMsg = undefined;
             let schemaApi = undefined;
-            if(appId){
-                this.$ajax.get('/api/appCfg?appId='+appId).then(appCfg => {
-                    let loginUrl = '/' + appId + '/login';
-                    appCfg.data.routes.forEach(function (route) {
-                        if(route.pathname == loginUrl){
-                            if(route.redirect){
-                                window.location.href = document.location.protocol + '//' + document.location.host + route.redirect;
-                            }else{
-                                schemaApi = route.schemaApi;
+            if(_this.appId){
+                this.$ajax.get('/api/appCfg?appId='+_this.appId).then(appCfg => {
+                    if(appCfg.data && appCfg.data.frameType) {
+                        let loginUrl = '/' + _this.appId + '/login';
+                        appCfg.data.routes.forEach(function (route) {
+                            if (route.pathname == loginUrl) {
+                                if (route.redirect) {
+                                    window.location.href = document.location.protocol + '//' + document.location.host + route.redirect;
+                                } else {
+                                    schemaApi = route.schemaApi;
+                                }
                             }
+                        })
+                        if(schemaApi == undefined){
+                            schemaApi = '/pages/error.json';
+                            errorMsg = "没有找到登录页的路由配置：" + loginUrl;
                         }
-                    })
-                    if(schemaApi == undefined){
+                    }else{
                         schemaApi = '/pages/error.json';
-                        errorMsg = "没有找到登录页的路由配置：" + loginUrl;
+                        errorMsg = "没有配置框架类型";
                     }
                     if(schemaApi != undefined){
                         _this.getSchema(schemaApi, appCfg, errorMsg);
                     }
                 })
+                .catch(() => {
+//                    toast['error']("接口错误：" + error, "系统错误")
+                    schemaApi = '/pages/error.json';
+                    errorMsg = "没有找到该应用地址：" + document.location.href;
+                    _this.getSchema(schemaApi, {}, errorMsg);
+                });
             }else{
                 schemaApi = '/pages/error.json';
                 errorMsg = "没有找到该地址：" + document.location.href;
@@ -117,7 +128,7 @@ export default {
             this.$ajax.get(schemaApi).then(appSchema => {
                 _this.schema = appSchema.data;
                 if(_this.schema.data == undefined){
-                    _this.schema.data = [];
+                    _this.schema.data = {};
                 }
                 for(let key in appCfg.data){
                     _this.schema.data[key] = appCfg.data[key];
@@ -129,6 +140,11 @@ export default {
                 _this.schema.data.userName = _this.userName;
                 _this.time = new Date().getTime();
             })
+        },
+        getAppidFromPathname(){
+            let appIdEndPos = document.location.pathname.indexOf('/', 1);
+            let appId = ((appIdEndPos > 0)? document.location.pathname.substring(1, appIdEndPos): document.location.pathname.substr(1, document.location.pathname.length - 1));
+            return appId;
         }
     }
 };

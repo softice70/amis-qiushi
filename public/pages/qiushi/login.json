@@ -1,37 +1,183 @@
 {
   "type": "page",
+  "data": {
+    "brandName": "海量ADP",
+    "logoSrc": "/img/logo.png",
+    "slogan": "海量ADP，越用越智慧",
+    "timeLeft": 60
+  },
+  "style": {
+    "backcolor": "white",
+    "background": "url('/img/login_bg.png') no-repeat center 0px",
+    "width": "100%",
+    "height": "100%"
+  },
   "body": {
-    "type": "form",
-    "api": "post:/api/qiushi/login",
-    "controls": [
+    "type": "container",
+    "style": {
+      "position": "relative",
+      "top": "100px",
+      "left": "calc((100% - 400px)/2)",
+      "width": "400px"
+    },
+    "body":[
       {
-        "type": "text",
-        "name": "username",
-        "placeholder": "请输入用户名",
-        "label": "用户名"
+        "type": "tpl",
+        "tpl": "<img src='/img/logo.png' class='mr-2' style='width:30px;height:30px;'/>${brandName}",
+        "className": "text-info text-lg text-center w-full inline-block mb-5"
       },
       {
-        "type": "password",
-        "name": "password",
-        "label": "密码",
-        "placeholder": "请输入密码"
+        "type": "tpl",
+        "tpl": "${slogan}",
+        "className": "text-gray-400 text-base text-center w-full inline-block mb-5"
       },
       {
-        "type": "checkbox",
-        "name": "rememberMe",
-        "option": "记住登录"
-      }
-    ],
-    "actions": [
-      {
-        "type": "reset",
-        "label": "重置"
-      },
-      {
-        "type": "submit",
-        "label": "提交",
-        "level": "primary",
-        "redirect": "${redirect | url_decode}"
+        "type": "tabs",
+        "mode": "tiled",
+        "className": "pl-0 ml-0",
+        "tabs": [
+          {
+            "title": "密码登录",
+            "body": [
+              {
+                "type": "form",
+                "title": "",
+                "wrapWithPanel": false,
+                "api": {
+                  "method": "post",
+                  "url": "/api/login",
+                  "data": {
+                    "appId": "${appId}",
+                    "username": "${username}",
+                    "password": "${password}"
+                  }
+                },
+                "controls": [
+                  {
+                    "type": "text",
+                    "name": "username",
+                    "required": true,
+                    "placeholder": "请输入用户名"
+                  },
+                  {
+                    "type": "password",
+                    "name": "password",
+                    "required": true,
+                    "placeholder": "请输入密码"
+                  },
+                  {
+                    "type": "divider",
+                    "lineStyle": "solid",
+                    "className": "ml-0 mr-0"
+                  },
+                  {
+                    "type": "group",
+                    "controls": [
+                      {
+                        "type": "checkbox",
+                        "name": "rememberMe",
+                        "option": "记住登录"
+                      },
+                      {
+                        "type": "submit",
+                        "label": "登录",
+                        "level": "primary",
+                        "className": "text-info pull-right mr-14",
+                        "redirect": "${redirect | url_decode}"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "icon": "fa fa-key"
+          },
+          {
+            "title": "手机登录",
+            "body": [
+              {
+                "type": "wrapper",
+                "visible": false,
+                "body": [
+                  {
+                    "type": "tpl",
+                    "tpl": "图片验证码：",
+                    "className": "mr-2"
+                  },
+                  {
+                    "type": "tpl",
+                    "tpl": "<a href='javascript:{let url=\"/api/role/captcha/captchaImage?type=math&s=\"+Math.random();document.getElementById(\"imgcode\").setAttribute(\"src\", url);};' title=\"点击更换验证码\"><img id=\"imgcode\" src=\"/api/role/captcha/captchaImage?type=math&s=0.17372973749483367\" class='border border-solid' style='width:160px;height:33px;margin-top:1px;' /></a>"
+                  }
+                ]
+              },
+              {
+                "type": "form",
+                "title": "",
+                "submitText": "登录",
+                "wrapWithPanel": true,
+                "panelClassName": "",
+                "className": "mt-0",
+                "api": {
+                  "method": "post",
+                  "url": "/api/smslogin",
+                  "data": {
+                    "appId": "${appId}",
+                    "phone": "${phone}",
+                    "validateCode": "${validateCode}",
+                    "smsCode": "${smsCode}"
+                  }
+                },
+                "controls": [
+                  {
+                    "type": "group",
+                    "controls": [
+                      {
+                        "type": "text",
+                        "name": "validateCode",
+                        "required": true,
+                        "placeholder": "请输入图片验证码"
+                      },
+                      {
+                        "type": "tpl",
+                        "tpl": "<a href='javascript:{let url=\"/api/role/captcha/captchaImage?type=math&s=\"+Math.random();document.getElementById(\"imgcode\").setAttribute(\"src\", url);};' title='点击更换验证码'><img id='imgcode' src='/api/role/captcha/captchaImage?type=math&s=0.17372973749483367' class='border border-solid' style='width:160px;height:30px;' /></a>"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "phone",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "请输入手机号",
+                    "addOn": {
+                      "label": "发送验证码",
+                      "type": "button",
+                      "countDown": 60,
+                      "countDownTpl": "${timeLeft} 秒后重发",
+                      "actionType": "ajax",
+                      "api": "get:/api/role/smsCode?phone=${phone}&validateCode=${validateCode}"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "name": "smsCode",
+                    "required": true,
+                    "placeholder": "请输入短信验证码",
+                    "className": "mb-1"
+                  }
+                ],
+                "actions": [
+                  {
+                    "type": "submit",
+                    "label": "登录",
+                    "level": "primary",
+                    "redirect": "${redirect | url_decode}"
+                  }
+                ]
+              }
+            ],
+            "icon": "fa fa-phone"
+          }
+        ]
       }
     ]
   }
